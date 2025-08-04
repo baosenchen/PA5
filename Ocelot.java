@@ -34,3 +34,4 @@ public class Ocelot extends Critter {
         return new Color(140, 120, 90); 
     }
 }
+
