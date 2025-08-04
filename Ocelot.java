@@ -1,39 +1,25 @@
-import java.util.Random;
+import java.awt.Color;
 
-public class Ocelot extends Critter {
-    private Random rand = new Random();
+public class Ocelot extends Leopard {
 
     public Ocelot() {
-        super("Ocelot");
+        super();
+        this.displayName = "Oce";
     }
 
-    public Direction getMove() {
-        int n = rand.nextInt(8);
-        switch (n) {
-            case 0: return Direction.NORTH;
-            case 1: return Direction.SOUTH;
-            case 2: return Direction.EAST;
-            case 3: return Direction.WEST;
-            case 4: return Direction.NORTHEAST;
-            case 5: return Direction.NORTHWEST;
-            case 6: return Direction.SOUTHEAST;
-            default: return Direction.SOUTHWEST;
-        }
-    }
-
-    public Attack getAttack(String opponent) {
-        if (opponent.equals("F")) {
-            return Attack.SCRATCH;
-        }
-        return Attack.POUNCE;
-    }
-
-    public boolean eat() {
-        return rand.nextBoolean();
-    }
-
+    @Override
     public Color getColor() {
-        return Color.MAGENTA;
+        return Color.LIGHT_GRAY;
+    }
+
+    @Override
+    protected Attack generateAttack(String opponent) {
+        if (opponent.equals("L") || opponent.equals("F") || opponent.equals("Lpd")) {
+            return Attack.SCRATCH;
+        } else {
+            return Attack.POUNCE;
+        }
     }
 }
+
 
