@@ -1,30 +1,32 @@
-import java.awt.Color;
+import java.util.Random;
 
 public class Leopard extends Critter {
+    private Random rand = new Random();
+
     public Leopard() {
-        super("Leo");
+        super("Leopard");
     }
 
-    @Override
-    public Color getColor() {
-        return Color.YELLOW;
-    }
-
-    @Override
-    public Critter.Attack getAttack(String opponent) {
-        if (opponent.equals("T")) {
-            return Critter.Attack.ROAR;
-        }
-        return Critter.Attack.POUNCE;
-    }
-
-    @Override
     public Direction getMove() {
-        return Direction.values()[random.nextInt(4)];
+        int n = rand.nextInt(4);
+        if (n == 0) return Direction.NORTH;
+        if (n == 1) return Direction.SOUTH;
+        if (n == 2) return Direction.EAST;
+        return Direction.WEST;
     }
 
-    @Override
+    public Attack getAttack(String opponent) {
+        if (opponent.equals("T")) {
+            return Attack.ROAR;
+        }
+        return Attack.POUNCE;
+    }
+
     public boolean eat() {
-        return random.nextBoolean();
+        return true;
+    }
+
+    public Color getColor() {
+        return Color.ORANGE;
     }
 }
