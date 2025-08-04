@@ -1,7 +1,7 @@
 import java.awt.Color;
 
 public class Ocelot extends Critter {
-    private Direction[] moves = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
+    private Direction[] path = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
     private int index = 0;
 
     public Ocelot() {
@@ -10,9 +10,8 @@ public class Ocelot extends Critter {
 
     @Override
     public Direction getMove() {
-
-        Direction move = moves[index];
-        index = (index + 1) % moves.length;
+        Direction move = path[index];
+        index = (index + 1) % path.length;
         return move;
     }
 
@@ -23,15 +22,16 @@ public class Ocelot extends Critter {
 
     @Override
     public Attack getAttack(String opponent) {
-        if (opponent.equals("D") || opponent.equals("L")) {
+        if (opponent.equals("F")) {
+            return Attack.SCRATCH;
+        } else if (opponent.equals("L") || opponent.equals("D")) {
             return Attack.ROAR;
         }
-        return Attack.SCRATCH;
+        return Attack.POUNCE;
     }
 
     @Override
     public Color getColor() {
-        return new Color(140, 120, 90); 
+        return new Color(140, 120, 90);
     }
 }
-
