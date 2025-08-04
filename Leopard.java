@@ -1,39 +1,38 @@
 import java.awt.Color;
 
 public class Leopard extends Critter {
-    private int stepCount;
+    private int moveCount;
 
     public Leopard() {
         super("L");
-        stepCount = 0;
+        moveCount = 0;
     }
 
     @Override
     public Direction getMove() {
-        stepCount++;
-        if (stepCount % 3 == 0) {
-            return Direction.values()[(int)(Math.random() * 4)];
+        moveCount++;
+        if (moveCount % 2 == 0) {
+            return Direction.EAST;
+        } else {
+            return Direction.NORTH;
         }
-        return Direction.NORTH;
     }
 
     @Override
     public boolean eat() {
-        
         return Math.random() < 0.5;
     }
 
     @Override
     public Attack getAttack(String opponent) {
-        
-        if (opponent.equals("%") || opponent.equals("S") || opponent.equals("T")) {
-            return Attack.ROAR;
+        if (opponent.equals("T")) {
+            return Attack.SCRATCH;
         }
-        return Attack.SCRATCH;
+        return Attack.ROAR;
     }
 
     @Override
     public Color getColor() {
-        return new Color(210, 180, 140); 
+        return new Color(210, 180, 140);
     }
 }
